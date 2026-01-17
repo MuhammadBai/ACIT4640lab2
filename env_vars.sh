@@ -1,4 +1,3 @@
-USERAME="admin"
-IP_ADDRESS="44.251.116.101"
-SSH_KEY_PATH="/home/SarahLinux/.ssh/wkone"
-
+USERNAME="admin"
+IP_ADDRESS="18.220.27.165"
+SSH_KEY_PATH="/home/SarahLinux/part1-scripts/wkone"

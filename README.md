@@ -74,6 +74,15 @@ source ./env_vars.sh
 today=$(date+"%d/%m/%Y")
 
 #write a new html doc
+#!/bin/bash
+
+#load environment variables
+source ./env_vars.sh
+
+#set up today variable to get the current date
+today=$(date+"%d/%m/%Y")
+
+#write a new html doc
 echo "<!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -88,13 +97,14 @@ echo "<!DOCTYPE html>
 </html>" > index.html
 
 #copy the html file to EC2 instance
-scp -i "SSH_KEY_PATH" index.html "$USERNAME@$IP_ADDRESS:/index.html"
 
-#backup original nginx html file
-ssh -i "SSH_KEY_PATH" "$USERNAME@$IP_ADDRESS" "sudo mv /var/www/html/index.html /var/www/html/index.html.bak"
+ssh -i "SSH_KEY_PATH" "$USERNAME@$IP_ADDRESS" << 'EOF'
+    # Backup original nginx html file
+    sudo mv /var/www/html/index.html /var/www/html/index.html.bak
 
-#move the html file we generated above to nginx folder
-ssh -i "$SSH_KEY_PATH" "$USERNAME@$IP_ADDRESS" "sudo mv /tmp/index.html /var/www/html/index.html"
+    # Move the html file from /tmp to the nginx folder
+    sudo mv /tmp/index.html /var/www/html/index.html
+EOF
 ```
 
 This script:

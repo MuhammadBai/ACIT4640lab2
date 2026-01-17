@@ -16,6 +16,6 @@ sudo apt install -y nginx
 sudo systemctl start nginx
 
 #make nginx start when the instance is boot up
-sudo systemctl enable ngin
+sudo systemctl enable nginx
 EOF
 
